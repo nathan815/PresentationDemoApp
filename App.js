@@ -14,7 +14,7 @@ export default class App extends React.Component {
       running: false,
     };
   }
-  
+
   start = () => {
     if(this.state.running) {
       this.stop();
@@ -65,7 +65,7 @@ export default class App extends React.Component {
           <Text style={styles.timeText}>{ this.getFormattedTime() }</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[ styles.startButton, { backgroundColor: this.state.running ? 'darkred' : 'deepskyblue' } ]} 
+        <TouchableOpacity style={[ styles.startButton, { backgroundColor: this.state.running ? 'orange' : 'deepskyblue' } ]} 
                           onPress={this.start}>
           <Text style={styles.startButtonText}>{ this.state.running ? 'Stop' : 'Start' }</Text>
         </TouchableOpacity>
