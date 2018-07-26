@@ -25,6 +25,7 @@ export default class App extends React.Component {
       running: true,
       startTime: new Date() - this.state.elapsed
     });
+    
     this.interval = setInterval(() => {
       this.setState({
         elapsed: new Date() - this.state.startTime
@@ -59,13 +60,13 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>Stop Watch</Text>
+        <Text style={styles.headerText}>Stopwatch</Text>
 
         <TouchableOpacity onPress={this.reset}>
           <Text style={styles.timeText}>{ this.getFormattedTime() }</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[ styles.startButton, { backgroundColor: this.state.running ? 'orange' : 'deepskyblue' } ]} 
+        <TouchableOpacity style={[ styles.startButton, { backgroundColor: this.state.running ? '#D63636' : '#15C260' } ]} 
                           onPress={this.start}>
           <Text style={styles.startButtonText}>{ this.state.running ? 'Stop' : 'Start' }</Text>
         </TouchableOpacity>
