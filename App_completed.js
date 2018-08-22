@@ -1,18 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
 
 function padNumber(number) {
   return ("00" + number).slice(-2);
 }
 
 export default class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
-      startTime: 0,
       elapsed: 0,
-      running: false
+      startTime: 0,
+      running: false,
     };
   }
 
@@ -21,14 +20,16 @@ export default class App extends React.Component {
       this.stop();
       return;
     }
+
     this.setState({
-        running: true,
-        startTime: new Date() - this.state.elapsed
+      running: true,
+      startTime: new Date() - this.state.elapsed
     });
+    
     this.interval = setInterval(() => {
-        this.setState({
-            elapsed: new Date() - this.state.startTime
-        });
+      this.setState({
+        elapsed: new Date() - this.state.startTime
+      });
     }, 1);
   }
 
@@ -59,18 +60,15 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.headerText}>Stopwatch</Text>
 
-        <Text style={ styles.headerText}>Stopwatch</Text>
-        
         <TouchableOpacity onPress={this.reset}>
-          <Text style={ styles.timeText}>{ this.getFormattedTime() }</Text>
+          <Text style={styles.timeText}>{ this.getFormattedTime() }</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={[ styles.startButton, { backgroundColor: this.state.running ? '#D63636' : '#15C260' } ]} 
                           onPress={this.start}>
-          <Text style={styles.startButtonText}>
-            { this.state.running ? 'Stop' : 'Start' }
-          </Text>
+          <Text style={styles.startButtonText}>{ this.state.running ? 'Stop' : 'Start' }</Text>
         </TouchableOpacity>
 
       </View>
@@ -81,29 +79,28 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-around',
   },
   headerText: {
-    fontSize: 60,
-    fontWeight: 'bold',
-    color: '#fff'
+    fontSize: 50,
+    fontWeight: 'bold'
   },
   timeText: {
-    fontSize: 80,
-    color: '#fff'
+    fontSize: 85,
+    fontFamily: Platform.OS == 'ios' ? 'Helvetica Neue' : 'Roboto'
   },
   startButton: {
     width: 150,
     height: 150,
-    backgroundColor: 'green',
+    backgroundColor: 'deepskyblue',
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center'
   },
   startButtonText: {
-    color:'white',
+    color: '#fff',
     fontSize: 30
   }
 });
